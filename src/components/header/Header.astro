@@ -1,0 +1,10 @@
+---
+import {getNavByLocation} from "../../lib/getNavByLocation";
+import MegaMenu from "../mega-menu/MegaMenu.astro"
+
+const menuItems = await getNavByLocation(`primary`);
+---
+<header class="flex">
+    <MegaMenu menuItems={menuItems} />
+    <!--<MainMenu menuItems={menuItems} />-->
+</header>

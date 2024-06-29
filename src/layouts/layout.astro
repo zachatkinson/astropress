@@ -1,0 +1,35 @@
+---
+import Header from '../components/header/Header.astro'
+import Footer from '../components/footer/Footer.astro'
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+
+
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Astro description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="generator" content={Astro.generator}/>
+    <title>{title}</title>
+    <slot name="head">
+        <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js" defer></script>
+    </slot>
+</head>
+<body>
+<div class="max-w-screen-xl mx-auto px-5">
+    <Header/>
+    <main>
+        <slot name="body"/>
+    </main>
+    <Footer/>
+</div>
+</body>
+</html>

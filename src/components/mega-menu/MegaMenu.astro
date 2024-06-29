@@ -1,0 +1,34 @@
+---
+import Svg from "../svg/Svg.astro"
+import MegaMenuItem from '../mega-menu-item/MegaMenuItem.astro';
+import type { DataItem } from '../../types/types';
+
+interface Props {
+    menuItems: DataItem[];
+}
+
+const { menuItems } = Astro.props;
+---
+
+<nav class="bg-white border-gray-200 flex-grow">
+    <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <Svg name="logotext" width="200" height="80" fill="black" />
+        </a>
+        <div class="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <button data-collapse-toggle="mega-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="mega-menu" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+        <div id="mega-menu" class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
+            <ul class="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse">
+                {menuItems.map((item) => (
+                        <MegaMenuItem item={item} columnItemLimit={4} />
+                ))}
+            </ul>
+        </div>
+    </div>
+</nav>

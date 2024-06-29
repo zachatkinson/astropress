@@ -1,0 +1,6 @@
+schema:
+  https:/creativebranding.ca/cms24/graphql:
+      headers:
+        Authorization: Bearer ${TOKEN}
+documents: '**/*.graphql'
+projects:

@@ -1,0 +1,21 @@
+---
+import type { DataItem } from '../../types/types.ts';
+import MenuItemClassic from "./MenuItemClassic.astro"
+
+interface Props {
+    item: DataItem;
+}
+
+const { item } = Astro.props;
+---
+
+<li class="relative group">
+    <a href={item.url} class="block px-4 py-2 hover:bg-gray-200">{item.title}</a>
+    {item.children && item.children.length > 0 && (
+            <ul class="absolute hidden group-hover:block bg-white shadow-lg mt-2">
+                {item.children.map((childItem) => (
+                        <MenuItemClassic item={childItem} />
+                ))}
+            </ul>
+    )}
+</li>

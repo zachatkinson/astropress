@@ -1,0 +1,18 @@
+---
+import MenuItem from '../menu-item-classic/MenuItemClassic.astro';
+import type { DataItem } from '../../types/types';
+
+interface Props {
+    menuItems: DataItem[];
+}
+
+const { menuItems } = Astro.props;
+---
+
+<nav class="flex-grow">
+    <ul class="flex space-x-4">
+        {menuItems.map((item) => (
+                <MenuItem item={item} />
+        ))}
+    </ul>
+</nav>

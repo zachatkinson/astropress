@@ -7,7 +7,7 @@ export async function graphQuery({query, variables={} }: gqlParams) {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + import.meta.env.JWT_TOKEN,
+            Authorization: `Basic ${btoa(`${import.meta.env.USER}:${import.meta.env.PASS}`)}`
         },
         body: JSON.stringify({
             query: query,
