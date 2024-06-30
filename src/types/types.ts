@@ -5,4 +5,5 @@ export type DataItem = {
     parentId?: string | number;
     url?: string;
     children?: DataItem[];
+    depth?: number;
 };

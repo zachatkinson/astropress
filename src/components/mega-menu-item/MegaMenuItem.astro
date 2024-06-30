@@ -14,36 +14,52 @@ const indexVal = getRndInteger();
 
 ---
 
-<li>
     {
         item.children && item.children.length  > 0 && !item.parentId ? (
-            <button id={`mega-menu-dropdown-` + indexVal + `-button`}
-                    data-dropdown-toggle={`mega-menu-dropdown-`+ indexVal + `-div`}
-                    data-dropdown-trigger="hover"
-                    class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">
-                {item.title}
-                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                </svg>
-            </button>
-            <div id={`mega-menu-dropdown-` + indexVal + `-div`} class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md md:grid-cols-3">
-                <div class="p-4 pb-0 text-gray-900 md:pb-4">
-                    <ul class="space-y-4" aria-labelledby={`mega-menu-dropdown-`+ indexVal + `button`}>
-                        {item.children.map((childItem) => (
-                                <MegaMenuItem item={childItem} />
-                        ))}
-                    </ul>
-                </div>
-            </div>
+                <li>
+                        <button id={`mega-menu-dropdown-` + indexVal + `-button`}
+                                data-dropdown-toggle={`mega-menu-dropdown-`+ indexVal + `-div`}
+                                data-dropdown-trigger="hover"
+                                class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">
+                            {item.title}
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div id={`mega-menu-dropdown-` + indexVal + `-div`} class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md md:grid-cols-3">
+
+                                        {item.children.map((childItem) => (
+                                            (childItem.depth === 1 ?
+                                                    <div class="p-4 pb-0 text-gray-900 md:pb-4">
+                                                        <ul class="space-y-4" aria-labelledby={`mega-menu-dropdown-`+ indexVal + `-button`}>
+                                                            <MegaMenuItem item={childItem} />
+                                                        </ul>
+                                                    </div>
+
+
+                                            :    <MegaMenuItem item={childItem} />
+                                        )))}
+
+                        </div>
+            </li>
         ) :
+            item.depth > 0 ? (
+            <li>
                 <a href={item.url} class="text-gray-500 hover:text-blue-600">
                     {item.title}
                 </a>
+            </li>
+
+            ): (<li>
+                <a href={item.url} class="text-black hover:text-blue-600">
+                    {item.title}
+                </a>
+            </li>)
+
     }
 
 
-        {item.children && item.children.length > 0 && item.parentId && (
-                item.children.map((childItem) => (
-                        <MegaMenuItem item={childItem} />
-                )))}
-</li>
+    {item.children && item.children.length > 0 && item.parentId && (
+        item.children.map((childItem) => (
+                <MegaMenuItem item={childItem} />
+        )))}
