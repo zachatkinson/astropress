@@ -4,6 +4,7 @@ export type DataItem = {
     title: string;
     parentId?: string | number;
     url?: string;
+    uri?: string;
     children?: DataItem[];
     depth?: number;
 };

@@ -16,7 +16,7 @@ interface HierarchicalOptions {
 
 const flatListToHierarchical = (
     data: DataItem[] = [],
-    { idKey = 'id', parentKey = 'parentId', childrenKey = 'children', depth = 0 }: HierarchicalOptions = {}
+    { idKey = 'id', parentKey = 'parentId', childrenKey = 'children' }: HierarchicalOptions = {}
 ): DataItem[] => {
     const tree: DataItem[] = [];
     const childrenOf: { [key: string]: DataItem[] } = {};
@@ -57,6 +57,7 @@ export async function getNavByLocation(location = 'secondary'): Promise<DataItem
                     title: label
                     parentId
                     url
+                    uri
                 }
             }
         }`,
