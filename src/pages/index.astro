@@ -1,7 +1,20 @@
 ---
-import Layout from '../layouts/layout.astro';
+import Layout from "../layouts/layout.astro";
+import {getPosts} from "../lib/getPosts";
+import type {WordPressPost} from "../lib/getPosts";
+const featuredPosts = await getPosts(6)
+import PostCard from "../components/post-card/postCard.astro";
 ---
 
-<Layout>
-	<h1 class="text-xl">Astro + WordPress 🚀</h1>
+<Layout title="Posts">
+	<section slot="body">
+		<h1 style="font-size: 2em;">Post List</h1>
+		<div id="latest-posts" class="grid grid-cols-3 gap-3">
+		{
+			featuredPosts.map((post: WordPressPost) => (
+				<PostCard post={post} />
+			))
+		}
+		</div>
+	</section>
 </Layout>

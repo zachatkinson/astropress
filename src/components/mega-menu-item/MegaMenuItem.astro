@@ -5,20 +5,15 @@ import MegaMenuItem from "./MegaMenuItem.astro"
 interface Props {
     item: DataItem;
 }
-
-function getRndInteger() {
-    return Math.floor(Math.random() * (1024 - 1)) + 1;
-}
 const {item} = Astro.props;
-const indexVal = getRndInteger();
 
 ---
 
     {
         item.children && item.children.length  > 0 && !item.parentId ? (
                 <li>
-                        <button id={`mega-menu-dropdown-` + indexVal + `-button`}
-                                data-dropdown-toggle={`mega-menu-dropdown-`+ indexVal + `-div`}
+                        <button id={`mega-menu-dropdown-` + item.id + `-button`}
+                                data-dropdown-toggle={`mega-menu-dropdown-`+ item.id + `-div`}
                                 data-dropdown-trigger="hover"
                                 class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">
                             {item.title}
@@ -26,12 +21,12 @@ const indexVal = getRndInteger();
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                             </svg>
                         </button>
-                        <div id={`mega-menu-dropdown-` + indexVal + `-div`} class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md md:grid-cols-3">
+                        <div id={`mega-menu-dropdown-` + item.id + `-div`} class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-lg md:grid-cols-3" }>
 
                                         {item.children.map((childItem) => (
                                             (childItem.depth === 1 ?
                                                     <div class="p-4 pb-0 text-gray-900 md:pb-4">
-                                                        <ul class="space-y-4" aria-labelledby={`mega-menu-dropdown-`+ indexVal + `-button`}>
+                                                        <ul class="space-y-4" aria-labelledby={`mega-menu-dropdown-`+ item.id + `-button`}>
                                                             <MegaMenuItem item={childItem} />
                                                         </ul>
                                                     </div>

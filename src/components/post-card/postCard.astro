@@ -1,0 +1,20 @@
+---
+const {post} = Astro.props;
+import Svg from "../svg/Svg.astro"
+---
+<a>
+    <article class="
+        flex flex-col flex-auto text-wrap break-words h-full
+        shadow-md mr-5 mb-5 transition-all rounded-xl
+        bg-slate-100 border-slate-100 hover:bg-black
+        hover:text-white hover:border-blue-700
+        bg-clip-border active:bg-blue-700"
+             style="overflow: hidden"
+    >
+        <h2 class="text-xl post-title p-3">
+            <span set:html={post.title}></span>
+        </h2>
+        <div class="post-content p-3" set:html={post.excerpt}></div>
+        <button class="read-more hover:bg-blue-700 p-3 w-full mt-auto text-white text-right uppercase tracking-widest" style="justify-self: flex-end; font-size: 20px; line-height: 24px;">Read More <Svg class="w-7 h-7 inline-block align-middle" name="arrowright"  /></button>
+    </article>
+</a>

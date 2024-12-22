@@ -53,6 +53,7 @@ export async function getNavByLocation(location = 'secondary'): Promise<DataItem
         query: `query getNavByLocation($loc: MenuLocationEnum!) {
             menuItems(first: 100, where: {location: $loc}) {
                 items: nodes {
+                    databaseId
                     id
                     title: label
                     parentId
